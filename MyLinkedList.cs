@@ -50,12 +50,23 @@ namespace InsertProject
             }
         }
 
-        public void InsertAfter(MyNode<T> currentNode, T value)
+        public MyNode<T> InsertAfter(MyNode<T> currentNode, T value)
         {
-            var node = new MyNode<T>(this, value);
+            if (currentNode == null)
+                throw new ArgumentNullException(nameof(currentNode));
+
+            var newNode = new MyNode<T>(this, value);
             var nodeAfter = currentNode.Next;
-            currentNode.Next = node;
-            node.Next = nodeAfter;
+            currentNode.Next = newNode;
+            newNode.Next = nodeAfter;
+
+            if (newNode.Next == null) // Если новый узел становится хвостом
+                _tail = newNode;
+
+            _countOperations++;
+            _counterNodes++;
+
+            return newNode;
         }
 
         public T Content
@@ -85,6 +96,10 @@ namespace InsertProject
                 var node = new MyNode<T>(this, value);
                 node.Next = _head;
                 _head = node;
+
+                if (_tail == null) // Если список был пустым
+                    _tail = node;
+
                 _counterNodes++;
                 return _head;
             }
@@ -104,6 +119,10 @@ namespace InsertProject
             var newNode = new MyNode<T>(this, value);
             newNode.Next = current.Next;
             current.Next = newNode;
+
+            if (newNode.Next == null) // Если новый узел становится хвостом
+                _tail = newNode;
+
             _counterNodes++;
             return newNode;
         }
@@ -114,7 +133,5 @@ namespace InsertProject
             _counterNodes = 0;
             _head = _tail = null;
         }
-
-        
     }
 }

@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "D:\\Veronika\\InsertProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|D:\\Veronika\\InsertProject\\mylinkedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:mylinkedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|D:\\Veronika\\InsertProject\\arraydecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:arraydecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|d:\\veronika\\insertproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|d:\\veronika\\insertproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|d:\\veronika\\insertproject\\arraydecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:arraydecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|d:\\veronika\\insertproject\\mylinkedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:mylinkedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|d:\\veronika\\insertproject\\mynode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|D:\\Veronika\\InsertProject\\mynode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:mynode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|d:\\veronika\\insertproject\\datapoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|D:\\Veronika\\InsertProject\\datapoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:datapoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|D:\\Veronika\\InsertProject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{16375427-35E9-4341-9AE8-C5326B19AF88}|InsertProject.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,80 +50,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "DataPoint.cs",
               "DocumentMoniker": "D:\\Veronika\\InsertProject\\DataPoint.cs",
               "RelativeDocumentMoniker": "DataPoint.cs",
               "ToolTip": "D:\\Veronika\\InsertProject\\DataPoint.cs",
               "RelativeToolTip": "DataPoint.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T17:00:52.991Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\Veronika\\InsertProject\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\Veronika\\InsertProject\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T16:57:36.985Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ArrayDecorator.cs",
               "DocumentMoniker": "D:\\Veronika\\InsertProject\\ArrayDecorator.cs",
               "RelativeDocumentMoniker": "ArrayDecorator.cs",
               "ToolTip": "D:\\Veronika\\InsertProject\\ArrayDecorator.cs",
               "RelativeToolTip": "ArrayDecorator.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAywB0AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T16:54:43.431Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "MyLinkedList.cs",
               "DocumentMoniker": "D:\\Veronika\\InsertProject\\MyLinkedList.cs",
               "RelativeDocumentMoniker": "MyLinkedList.cs",
               "ToolTip": "D:\\Veronika\\InsertProject\\MyLinkedList.cs",
               "RelativeToolTip": "MyLinkedList.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAADwvzoAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T16:45:09.893Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "MyNode.cs",
               "DocumentMoniker": "D:\\Veronika\\InsertProject\\MyNode.cs",
               "RelativeDocumentMoniker": "MyNode.cs",
               "ToolTip": "D:\\Veronika\\InsertProject\\MyNode.cs",
               "RelativeToolTip": "MyNode.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T16:44:45.376Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\Veronika\\InsertProject\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\Veronika\\InsertProject\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T16:06:45.402Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-02-25T16:06:45.402Z"
             }
           ]
         }

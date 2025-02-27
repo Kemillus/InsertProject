@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InsertProject
 {
-    class DataPoint
+    public class DataPoint
     {
         public int N { get; set; }
         public int Operations { get; set; }
