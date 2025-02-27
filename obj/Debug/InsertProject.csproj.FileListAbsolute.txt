@@ -8,3 +8,4 @@ D:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.GenerateResource.cache
 D:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.CoreCompileInputs.cache
 D:\Veronika\InsertProject\obj\Debug\InsertProject.exe
 D:\Veronika\InsertProject\obj\Debug\InsertProject.pdb
+D:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.ResolveComReference.cache

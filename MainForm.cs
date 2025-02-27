@@ -18,12 +18,11 @@ namespace InsertProject
             InitializeComponent();
         }
 
-        private void btnRunTests_Click(object sender, EventArgs e)
+        private void btnRun(object sender, EventArgs e)
         {
             TestArrayWithoutInitialCapacity();
             TestArrayWithInitialCapacity();
             TestLinkedList();
-            SaveDataToCsv();
             DrawChart();
         }
 
@@ -50,38 +49,70 @@ namespace InsertProject
         private void TestLinkedList()
         {
             MyLinkedList<int> list = new MyLinkedList<int>();
-            MyNode<int> node = null; // Ссылка на последний вставленный узел
+            MyNode<int> node = null;
 
             for (int i = 0; i < 30; i++)
             {
                 if (i == 0)
                 {
-                    // Первый раз вставка по индексу
                     node = list.Insert(0, i);
                 }
+
                 else
                 {
-                    // Последующие вставки после предыдущего узла
-                    node = list.InsertAfter(node, i); // Теперь метод возвращает MyNode<int>
+                    node = list.InsertAfter(node, i);
                 }
 
-                // Сохраняем текущее состояние
                 _dataLinkedList.Add(new DataPoint(i + 1, list._countOperations));
             }
         }
 
-        private void SaveDataToCsv()
+        private void SaveDataToCsv(object sender, EventArgs e)
         {
             string filePath = "results.csv";
-            using (StreamWriter writer = new StreamWriter(filePath))
+
+            if (File.Exists(filePath))
             {
-                writer.WriteLine("Type,N,Operations");
-                foreach (var data in _dataListWithoutInitialCapacity)
-                    writer.WriteLine($"ListNoCapacity,{data.N},{data.Operations}");
-                foreach (var data in _dataListWithInitialCapacity)
-                    writer.WriteLine($"ListWithCapacity,{data.N},{data.Operations}");
-                foreach (var data in _dataLinkedList)
-                    writer.WriteLine($"LinkedList,{data.N},{data.Operations}");
+                var result = MessageBox.Show(
+                    "Файл уже существует. Хотите заменить его?",
+                    "Замена файла",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.No)
+                {
+                    MessageBox.Show("Операция записи отменена.", "Отмена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine("Type;N;Operations");
+
+                    foreach (var data in _dataListWithoutInitialCapacity)
+                        writer.WriteLine($"List No Capacity;{data.N};{data.Operations}");
+
+                    foreach (var data in _dataListWithInitialCapacity)
+                        writer.WriteLine($"List With Capacity;{data.N};{data.Operations}");
+
+                    foreach (var data in _dataLinkedList)
+                        writer.WriteLine($"Linked List;{data.N};{data.Operations}");
+                }
+
+                MessageBox.Show("Данные успешно сохранены в файл results.csv.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show(
+                    "Не удалось записать данные в файл. Возможно, файл уже открыт в другой программе. Пожалуйста, закройте файл и повторите попытку.",
+                    "Ошибка доступа к файлу",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
@@ -89,10 +120,9 @@ namespace InsertProject
         {
             chart.Series.Clear();
 
-            // Добавляем серию для списка без начальной емкости
             var series1 = new Series
             {
-                Name = "ListNoCapacity",
+                Name = "List No Capacity",
                 Color = Color.Red,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = true,
@@ -102,10 +132,9 @@ namespace InsertProject
                 series1.Points.AddXY(data.N, data.Operations);
             chart.Series.Add(series1);
 
-            // Добавляем точки к первой серии
             var pointSeries1 = new Series
             {
-                Name = "ListNoCapacityPoints",
+                Name = "List No Capacity Points",
                 Color = Color.Red,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = false,
@@ -115,10 +144,9 @@ namespace InsertProject
                 pointSeries1.Points.AddXY(data.N, data.Operations);
             chart.Series.Add(pointSeries1);
 
-            // Добавляем серию для списка с начальной емкостью
             var series2 = new Series
             {
-                Name = "ListWithCapacity",
+                Name = "List With Capacity",
                 Color = Color.Blue,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = true,
@@ -128,10 +156,9 @@ namespace InsertProject
                 series2.Points.AddXY(data.N, data.Operations);
             chart.Series.Add(series2);
 
-            // Добавляем точки ко второй серии
             var pointSeries2 = new Series
             {
-                Name = "ListWithCapacityPoints",
+                Name = "List With Capacity Points",
                 Color = Color.Blue,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = false,
@@ -141,10 +168,9 @@ namespace InsertProject
                 pointSeries2.Points.AddXY(data.N, data.Operations);
             chart.Series.Add(pointSeries2);
 
-            // Добавляем серию для односвязанного списка
             var series3 = new Series
             {
-                Name = "LinkedList",
+                Name = "Linked List",
                 Color = Color.Green,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = true,
@@ -154,10 +180,9 @@ namespace InsertProject
                 series3.Points.AddXY(data.N, data.Operations);
             chart.Series.Add(series3);
 
-            // Добавляем точки к третьей серии
             var pointSeries3 = new Series
             {
-                Name = "LinkedListPoints",
+                Name = "Linked List Points",
                 Color = Color.Green,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = false,

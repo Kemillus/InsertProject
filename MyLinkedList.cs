@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsertProject
 {
@@ -60,7 +56,7 @@ namespace InsertProject
             currentNode.Next = newNode;
             newNode.Next = nodeAfter;
 
-            if (newNode.Next == null) // Если новый узел становится хвостом
+            if (newNode.Next == null)
                 _tail = newNode;
 
             _countOperations++;
@@ -97,7 +93,7 @@ namespace InsertProject
                 node.Next = _head;
                 _head = node;
 
-                if (_tail == null) // Если список был пустым
+                if (_tail == null)
                     _tail = node;
 
                 _counterNodes++;
@@ -120,7 +116,7 @@ namespace InsertProject
             newNode.Next = current.Next;
             current.Next = newNode;
 
-            if (newNode.Next == null) // Если новый узел становится хвостом
+            if (newNode.Next == null)
                 _tail = newNode;
 
             _counterNodes++;

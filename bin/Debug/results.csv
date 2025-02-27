@@ -1,76 +1,76 @@
-Type,N,Operations
-ListNoCapacity,1,1
-ListNoCapacity,2,2
-ListNoCapacity,3,3
-ListNoCapacity,4,4
-ListNoCapacity,5,5
-ListNoCapacity,6,6
-ListNoCapacity,7,7
-ListNoCapacity,8,8
-ListNoCapacity,9,9
-ListNoCapacity,10,10
-ListNoCapacity,11,11
-ListNoCapacity,12,12
-ListNoCapacity,13,13
-ListNoCapacity,14,14
-ListNoCapacity,15,15
-ListNoCapacity,16,16
-ListNoCapacity,17,17
-ListNoCapacity,18,18
-ListNoCapacity,19,19
-ListNoCapacity,20,20
-ListNoCapacity,21,21
-ListNoCapacity,22,22
-ListNoCapacity,23,23
-ListNoCapacity,24,24
-ListNoCapacity,25,25
-ListNoCapacity,26,26
-ListNoCapacity,27,27
-ListNoCapacity,28,28
-ListNoCapacity,29,29
-ListNoCapacity,30,30
-ListWithCapacity,1,1
-ListWithCapacity,2,2
-ListWithCapacity,3,3
-ListWithCapacity,4,4
-ListWithCapacity,5,5
-ListWithCapacity,6,6
-ListWithCapacity,7,7
-ListWithCapacity,8,8
-ListWithCapacity,9,9
-ListWithCapacity,10,10
-ListWithCapacity,11,11
-ListWithCapacity,12,12
-ListWithCapacity,13,13
-ListWithCapacity,14,14
-ListWithCapacity,15,15
-LinkedList,1,4
-LinkedList,2,11
-LinkedList,3,18
-LinkedList,4,25
-LinkedList,5,32
-LinkedList,6,39
-LinkedList,7,46
-LinkedList,8,53
-LinkedList,9,60
-LinkedList,10,67
-LinkedList,11,74
-LinkedList,12,81
-LinkedList,13,88
-LinkedList,14,95
-LinkedList,15,102
-LinkedList,16,109
-LinkedList,17,116
-LinkedList,18,123
-LinkedList,19,130
-LinkedList,20,137
-LinkedList,21,144
-LinkedList,22,151
-LinkedList,23,158
-LinkedList,24,165
-LinkedList,25,172
-LinkedList,26,179
-LinkedList,27,186
-LinkedList,28,193
-LinkedList,29,200
-LinkedList,30,207
+Type;N;Operations
+List No Capacity;1;1
+List No Capacity;2;2
+List No Capacity;3;3
+List No Capacity;4;4
+List No Capacity;5;5
+List No Capacity;6;6
+List No Capacity;7;7
+List No Capacity;8;8
+List No Capacity;9;9
+List No Capacity;10;10
+List No Capacity;11;11
+List No Capacity;12;12
+List No Capacity;13;13
+List No Capacity;14;14
+List No Capacity;15;15
+List No Capacity;16;16
+List No Capacity;17;17
+List No Capacity;18;18
+List No Capacity;19;19
+List No Capacity;20;20
+List No Capacity;21;21
+List No Capacity;22;22
+List No Capacity;23;23
+List No Capacity;24;24
+List No Capacity;25;25
+List No Capacity;26;26
+List No Capacity;27;27
+List No Capacity;28;28
+List No Capacity;29;29
+List No Capacity;30;30
+List With Capacity;1;1
+List With Capacity;2;2
+List With Capacity;3;3
+List With Capacity;4;4
+List With Capacity;5;5
+List With Capacity;6;6
+List With Capacity;7;7
+List With Capacity;8;8
+List With Capacity;9;9
+List With Capacity;10;10
+List With Capacity;11;11
+List With Capacity;12;12
+List With Capacity;13;13
+List With Capacity;14;14
+List With Capacity;15;15
+Linked List;1;4
+Linked List;2;11
+Linked List;3;18
+Linked List;4;25
+Linked List;5;32
+Linked List;6;39
+Linked List;7;46
+Linked List;8;53
+Linked List;9;60
+Linked List;10;67
+Linked List;11;74
+Linked List;12;81
+Linked List;13;88
+Linked List;14;95
+Linked List;15;102
+Linked List;16;109
+Linked List;17;116
+Linked List;18;123
+Linked List;19;130
+Linked List;20;137
+Linked List;21;144
+Linked List;22;151
+Linked List;23;158
+Linked List;24;165
+Linked List;25;172
+Linked List;26;179
+Linked List;27;186
+Linked List;28;193
+Linked List;29;200
+Linked List;30;207
