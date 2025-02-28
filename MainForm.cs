@@ -29,7 +29,7 @@ namespace InsertProject
         private void TestArrayWithoutInitialCapacity()
         {
             ArrayDecorator<int> list = new ArrayDecorator<int>();
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 15000; i++)
             {
                 list.Insert(0, i); // Вставка в начало
                 _dataListWithoutInitialCapacity.Add(new DataPoint(i + 1, list.Size));
@@ -39,7 +39,7 @@ namespace InsertProject
         private void TestArrayWithInitialCapacity()
         {
             ArrayDecorator<int> list = new ArrayDecorator<int>(10000);
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 list.Insert(0, i); // Вставка в начало
                 _dataListWithInitialCapacity.Add(new DataPoint(i + 1, list.Size));
@@ -51,7 +51,7 @@ namespace InsertProject
             MyLinkedList<int> list = new MyLinkedList<int>();
             MyNode<int> node = null;
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 15000; i++)
             {
                 if (i == 0)
                 {
@@ -120,9 +120,22 @@ namespace InsertProject
         {
             chart.Series.Clear();
 
+            var area1 = chart.ChartAreas.Add("Area1");
+            area1.AxisX.Title = "N";
+            area1.AxisY.Title = "Operations";
+
+            var area2 = chart.ChartAreas.Add("Area2");
+            area2.AxisX.Title = "N";
+            area2.AxisY.Title = "Operations";
+
+            var area3 = chart.ChartAreas.Add("Area3");
+            area3.AxisX.Title = "N";
+            area3.AxisY.Title = "Operations";
+
             var series1 = new Series
             {
                 Name = "List No Capacity",
+                ChartArea = "Area1",
                 Color = Color.Red,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = true,
@@ -132,21 +145,10 @@ namespace InsertProject
                 series1.Points.AddXY(data.N, data.Operations);
             chart.Series.Add(series1);
 
-            var pointSeries1 = new Series
-            {
-                Name = "List No Capacity Points",
-                Color = Color.Red,
-                BorderColor = Color.Black,
-                IsVisibleInLegend = false,
-                ChartType = SeriesChartType.Point
-            };
-            foreach (var data in _dataListWithoutInitialCapacity)
-                pointSeries1.Points.AddXY(data.N, data.Operations);
-            chart.Series.Add(pointSeries1);
-
             var series2 = new Series
             {
                 Name = "List With Capacity",
+                ChartArea = "Area2",
                 Color = Color.Blue,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = true,
@@ -156,21 +158,10 @@ namespace InsertProject
                 series2.Points.AddXY(data.N, data.Operations);
             chart.Series.Add(series2);
 
-            var pointSeries2 = new Series
-            {
-                Name = "List With Capacity Points",
-                Color = Color.Blue,
-                BorderColor = Color.Black,
-                IsVisibleInLegend = false,
-                ChartType = SeriesChartType.Point
-            };
-            foreach (var data in _dataListWithInitialCapacity)
-                pointSeries2.Points.AddXY(data.N, data.Operations);
-            chart.Series.Add(pointSeries2);
-
             var series3 = new Series
             {
                 Name = "Linked List",
+                ChartArea = "Area3",
                 Color = Color.Green,
                 BorderColor = Color.Black,
                 IsVisibleInLegend = true,
@@ -180,17 +171,9 @@ namespace InsertProject
                 series3.Points.AddXY(data.N, data.Operations);
             chart.Series.Add(series3);
 
-            var pointSeries3 = new Series
-            {
-                Name = "Linked List Points",
-                Color = Color.Green,
-                BorderColor = Color.Black,
-                IsVisibleInLegend = false,
-                ChartType = SeriesChartType.Point
-            };
-            foreach (var data in _dataLinkedList)
-                pointSeries3.Points.AddXY(data.N, data.Operations);
-            chart.Series.Add(pointSeries3);
+            chart.Titles.Add("Зависимость количества операций от числа элементов");
+            chart.ChartAreas[0].AxisX.Title = "Количество элементов (N)";
+            chart.ChartAreas[0].AxisY.Title = "Количество операций";
         }
     }
 }
