@@ -123,6 +123,16 @@ namespace InsertProject
             return newNode;
         }
 
+        internal T RemoveLast()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal T PeekLast()
+        {
+            throw new NotImplementedException();
+        }
+
         public MyLinkedList()
         {
             _countOperations = 0;

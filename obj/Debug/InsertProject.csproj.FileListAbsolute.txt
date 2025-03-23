@@ -9,3 +9,15 @@ D:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.CoreCompileInputs.cache
 D:\Veronika\InsertProject\obj\Debug\InsertProject.exe
 D:\Veronika\InsertProject\obj\Debug\InsertProject.pdb
 D:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.ResolveComReference.cache
+H:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.AssemblyReference.cache
+H:\Veronika\InsertProject\obj\Debug\InsertProject.exe
+H:\Veronika\InsertProject\obj\Debug\InsertProject.pdb
+H:\Veronika\InsertProject\obj\Debug\Interop.Office.dll
+H:\Veronika\InsertProject\bin\Debug\InsertProject.exe.config
+H:\Veronika\InsertProject\bin\Debug\InsertProject.exe
+H:\Veronika\InsertProject\bin\Debug\InsertProject.pdb
+H:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.ResolveComReference.cache
+H:\Veronika\InsertProject\obj\Debug\InsertProject.MainForm.resources
+H:\Veronika\InsertProject\obj\Debug\InsertProject.Properties.Resources.resources
+H:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.GenerateResource.cache
+H:\Veronika\InsertProject\obj\Debug\InsertProject.csproj.CoreCompileInputs.cache

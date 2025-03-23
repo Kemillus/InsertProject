@@ -26,6 +26,100 @@ namespace InsertProject
             DrawChart();
         }
 
+        private void btnRun_Sorting(object sender, EventArgs e)
+        {
+            TestSortingAlgorithms();
+        }
+
+        private void TestSortingAlgorithms()
+        {
+            Random random = new Random();
+            List<DataPoint> classicData = new List<DataPoint>();
+            List<DataPoint> optimizedData = new List<DataPoint>();
+            List<DataPoint> sortedOptimizedData = new List<DataPoint>();
+
+            for (int size = 5; size <= 100; size += 5)
+            {
+                // Создаём случайный массив
+                ArrayDecorator<int> array = new ArrayDecorator<int>();
+                for (int i = 0; i < size; i++)
+                    array.Insert(i, random.Next(1, 100));
+
+                // Классическая сортировка
+                int classicOperations = BubbleSort.ClassicBubbleSort(array);
+                classicData.Add(new DataPoint(size, classicOperations));
+
+                // Оптимизированная сортировка
+                array = new ArrayDecorator<int>();
+                for (int i = 0; i < size; i++)
+                    array.Insert(i, random.Next(1, 100));
+                int optimizedOperations = BubbleSort.OptimizedBubbleSort(array);
+                optimizedData.Add(new DataPoint(size, optimizedOperations));
+
+                // Оптимизированная для упорядоченных массивов
+                array = new ArrayDecorator<int>();
+                for (int i = 0; i < size; i++)
+                    array.Insert(i, random.Next(1, 100));
+                int sortedOptimizedOperations = BubbleSort.OptimizedForSortedBubbleSort(array);
+                sortedOptimizedData.Add(new DataPoint(size, sortedOptimizedOperations));
+            }
+
+            // Рисуем график
+            DrawChart(classicData, optimizedData, sortedOptimizedData);
+        }
+
+        private void DrawChart(List<DataPoint> classicData, List<DataPoint> optimizedData, List<DataPoint> sortedOptimizedData)
+        {
+            chart.Series.Clear();
+            chart.ChartAreas.Clear();
+            chart.Titles.Clear();
+
+            var area = chart.ChartAreas.Add("Area");
+            area.AxisX.Title = "Количество элементов (N)";
+            area.AxisY.Title = "Количество операций";
+
+            var seriesClassic = new Series
+            {
+                Name = "Классическая",
+                ChartArea = "Area",
+                Color = Color.Red,
+                BorderColor = Color.Black,
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Line
+            };
+            foreach (var data in classicData)
+                seriesClassic.Points.AddXY(data.N, data.Operations);
+            chart.Series.Add(seriesClassic);
+
+            var seriesOptimized = new Series
+            {
+                Name = "Оптимизированная",
+                ChartArea = "Area",
+                Color = Color.Blue,
+                BorderColor = Color.Black,
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Line
+            };
+            foreach (var data in optimizedData)
+                seriesOptimized.Points.AddXY(data.N, data.Operations);
+            chart.Series.Add(seriesOptimized);
+
+            var seriesSortedOptimized = new Series
+            {
+                Name = "Оптимизированная для упорядоченных",
+                ChartArea = "Area",
+                Color = Color.Green,
+                BorderColor = Color.Black,
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Line
+            };
+            foreach (var data in sortedOptimizedData)
+                seriesSortedOptimized.Points.AddXY(data.N, data.Operations);
+            chart.Series.Add(seriesSortedOptimized);
+
+            chart.Titles.Add("Зависимость количества операций от числа элементов");
+        }
+
         private void TestArrayWithoutInitialCapacity()
         {
             ArrayDecorator<int> list = new ArrayDecorator<int>();
@@ -119,6 +213,8 @@ namespace InsertProject
         private void DrawChart()
         {
             chart.Series.Clear();
+            chart.ChartAreas.Clear();
+            chart.Titles.Clear();
 
             var area1 = chart.ChartAreas.Add("Area1");
             area1.AxisX.Title = "N";
