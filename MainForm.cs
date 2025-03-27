@@ -20,10 +20,7 @@ namespace InsertProject
 
         private void btnRun(object sender, EventArgs e)
         {
-            TestArrayWithoutInitialCapacity();
-            TestArrayWithInitialCapacity();
-            TestLinkedList();
-            DrawChart();
+            TestAllSortingAlgorithms();
         }
 
         private void btnRun_Sorting(object sender, EventArgs e)
@@ -31,93 +28,113 @@ namespace InsertProject
             TestSortingAlgorithms();
         }
 
+        private void btnRunShaker_Sorting(object sender, EventArgs e)
+        {
+            TestShakerSort();
+        }
+
         private void TestSortingAlgorithms()
         {
             Random random = new Random();
-            List<DataPoint> classicData = new List<DataPoint>();
-            List<DataPoint> optimizedData = new List<DataPoint>();
-            List<DataPoint> sortedOptimizedData = new List<DataPoint>();
+            Dictionary<double, List<DataPoint>> resultsByScale = new Dictionary<double, List<DataPoint>>();
 
-            for (int size = 5; size <= 100; size += 5)
+            double[] scales = { 1.2, 1.3, 1.4, 1.6, 1.8, 2.0 };
+
+            foreach (double scale in scales)
             {
-                // Создаём случайный массив
-                ArrayDecorator<int> array = new ArrayDecorator<int>();
-                for (int i = 0; i < size; i++)
-                    array.Insert(i, random.Next(1, 100));
+                List<DataPoint> results = new List<DataPoint>();
 
-                // Классическая сортировка
-                int classicOperations = BubbleSort.ClassicBubbleSort(array);
-                classicData.Add(new DataPoint(size, classicOperations));
+                for (int size = 5; size <= 100; size += 5)
+                {
+                    ArrayDecorator<int> arrayDecorator = new ArrayDecorator<int>(size);
+                    arrayDecorator.DisableCounting();
+                    for (int i = 0; i < size; i++)
+                    {
+                        arrayDecorator.Insert(i, random.Next(1, 100));
+                    }
+                    arrayDecorator.EnableCounting();
+                    int operations = BubbleSortsTest.CombSort(arrayDecorator, scale);
 
-                // Оптимизированная сортировка
-                array = new ArrayDecorator<int>();
-                for (int i = 0; i < size; i++)
-                    array.Insert(i, random.Next(1, 100));
-                int optimizedOperations = BubbleSort.OptimizedBubbleSort(array);
-                optimizedData.Add(new DataPoint(size, optimizedOperations));
+                    results.Add(new DataPoint(size, operations));
+                }
 
-                // Оптимизированная для упорядоченных массивов
-                array = new ArrayDecorator<int>();
-                for (int i = 0; i < size; i++)
-                    array.Insert(i, random.Next(1, 100));
-                int sortedOptimizedOperations = BubbleSort.OptimizedForSortedBubbleSort(array);
-                sortedOptimizedData.Add(new DataPoint(size, sortedOptimizedOperations));
+                resultsByScale[scale] = results;
             }
 
-            // Рисуем график
-            DrawChart(classicData, optimizedData, sortedOptimizedData);
+            DrawChart(resultsByScale);
         }
 
-        private void DrawChart(List<DataPoint> classicData, List<DataPoint> optimizedData, List<DataPoint> sortedOptimizedData)
+        private void TestAllSortingAlgorithms()
         {
-            chart.Series.Clear();
-            chart.ChartAreas.Clear();
-            chart.Titles.Clear();
+            Random random = new Random();
+            Dictionary<string, List<DataPoint>> resultsByAlgorithm = new Dictionary<string, List<DataPoint>>();
 
-            var area = chart.ChartAreas.Add("Area");
-            area.AxisX.Title = "Количество элементов (N)";
-            area.AxisY.Title = "Количество операций";
+            resultsByAlgorithm["BubbleSort"] = new List<DataPoint>();
+            resultsByAlgorithm["ShakerSort"] = new List<DataPoint>();
+            resultsByAlgorithm["CombSort"] = new List<DataPoint>();
 
-            var seriesClassic = new Series
+            for (int size = 10; size <= 100; size += 5)
             {
-                Name = "Классическая",
-                ChartArea = "Area",
-                Color = Color.Red,
-                BorderColor = Color.Black,
-                IsVisibleInLegend = true,
-                ChartType = SeriesChartType.Line
-            };
-            foreach (var data in classicData)
-                seriesClassic.Points.AddXY(data.N, data.Operations);
-            chart.Series.Add(seriesClassic);
+                ArrayDecorator<int> arrayDecorator = new ArrayDecorator<int>(size);
 
-            var seriesOptimized = new Series
+                arrayDecorator.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    arrayDecorator.Insert(i, random.Next(1, 100));
+                }
+
+                arrayDecorator.EnableCounting();
+                int bubbleOperations = BubbleSortsTest.BubbleSort(arrayDecorator);
+                resultsByAlgorithm["BubbleSort"].Add(new DataPoint(size, bubbleOperations));
+
+                arrayDecorator = new ArrayDecorator<int>();
+                arrayDecorator.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    arrayDecorator.Insert(i, random.Next(1, 100));
+                }
+                arrayDecorator.EnableCounting();
+                int shakerOperations = BubbleSortsTest.ShakerSort(arrayDecorator);
+                resultsByAlgorithm["ShakerSort"].Add(new DataPoint(size, shakerOperations));
+
+                arrayDecorator = new ArrayDecorator<int>();
+                arrayDecorator.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    arrayDecorator.Insert(i, random.Next(1, 100));
+                }
+                arrayDecorator.EnableCounting();
+                int combOperations = BubbleSortsTest.CombSort(arrayDecorator, 1.3);
+                resultsByAlgorithm["CombSort"].Add(new DataPoint(size, combOperations));
+            }
+
+            DrawChartForAllSortingAlgorithms(resultsByAlgorithm);
+        }
+
+        private void TestShakerSort()
+        {
+            Random random = new Random();
+            List<DataPoint> results = new List<DataPoint>();
+
+            for (int size = 10; size <= 100; size += 5)
             {
-                Name = "Оптимизированная",
-                ChartArea = "Area",
-                Color = Color.Blue,
-                BorderColor = Color.Black,
-                IsVisibleInLegend = true,
-                ChartType = SeriesChartType.Line
-            };
-            foreach (var data in optimizedData)
-                seriesOptimized.Points.AddXY(data.N, data.Operations);
-            chart.Series.Add(seriesOptimized);
+                ArrayDecorator<int> arrayDecorator = new ArrayDecorator<int>(size);
 
-            var seriesSortedOptimized = new Series
-            {
-                Name = "Оптимизированная для упорядоченных",
-                ChartArea = "Area",
-                Color = Color.Green,
-                BorderColor = Color.Black,
-                IsVisibleInLegend = true,
-                ChartType = SeriesChartType.Line
-            };
-            foreach (var data in sortedOptimizedData)
-                seriesSortedOptimized.Points.AddXY(data.N, data.Operations);
-            chart.Series.Add(seriesSortedOptimized);
+                arrayDecorator.DisableCounting();
 
-            chart.Titles.Add("Зависимость количества операций от числа элементов");
+                for (int i = 0; i < size; i++)
+                {
+                    arrayDecorator.Insert(i, random.Next(1, 100));
+                }
+
+                arrayDecorator.EnableCounting();
+
+                int operations = BubbleSortsTest.ShakerSort(arrayDecorator);
+
+                results.Add(new DataPoint(size, operations));
+            }
+
+            DrawChartForShakerSort(results);
         }
 
         private void TestArrayWithoutInitialCapacity()
@@ -125,8 +142,34 @@ namespace InsertProject
             ArrayDecorator<int> list = new ArrayDecorator<int>();
             for (int i = 0; i < 15000; i++)
             {
-                list.Insert(0, i); // Вставка в начало
+                list.Insert(0, i);
                 _dataListWithoutInitialCapacity.Add(new DataPoint(i + 1, list.Size));
+            }
+        }
+
+        private void DrawChart(Dictionary<double, List<DataPoint>> dataPointsByScale)
+        {
+            chart.Series.Clear();
+            chart.ChartAreas.Clear();
+            chart.Titles.Clear();
+
+            var area = chart.ChartAreas.Add("Area");
+            area.AxisX.Title = "Array Size (N)";
+            area.AxisY.Title = "Number of Operations";
+
+            foreach (var scale in dataPointsByScale.Keys)
+            {
+                Series series = new Series($"Scale {scale}")
+                {
+                    ChartType = SeriesChartType.Line
+                };
+
+                foreach (var point in dataPointsByScale[scale])
+                {
+                    series.Points.AddXY(point.N, point.Operations);
+                }
+
+                chart.Series.Add(series);
             }
         }
 
@@ -135,7 +178,7 @@ namespace InsertProject
             ArrayDecorator<int> list = new ArrayDecorator<int>(10000);
             for (int i = 0; i < 10000; i++)
             {
-                list.Insert(0, i); // Вставка в начало
+                list.Insert(0, i);
                 _dataListWithInitialCapacity.Add(new DataPoint(i + 1, list.Size));
             }
         }
@@ -270,6 +313,60 @@ namespace InsertProject
             chart.Titles.Add("Зависимость количества операций от числа элементов");
             chart.ChartAreas[0].AxisX.Title = "Количество элементов (N)";
             chart.ChartAreas[0].AxisY.Title = "Количество операций";
+        }
+
+        private void DrawChartForShakerSort(List<DataPoint> dataPoints)
+        {
+            chart.Series.Clear();
+            chart.ChartAreas.Clear();
+            chart.Titles.Clear();
+
+            var area = chart.ChartAreas.Add("Area");
+            area.AxisX.Title = "Array Size (N)";
+            area.AxisY.Title = "Number of Operations";
+
+            Series series = new Series("ShakerSort")
+            {
+                ChartType = SeriesChartType.Line,
+                Color = Color.Orange,
+                BorderColor = Color.Black,
+                IsVisibleInLegend = true
+            };
+
+            foreach (var point in dataPoints)
+            {
+                series.Points.AddXY(point.N, point.Operations);
+            }
+
+            chart.Series.Add(series);
+        }
+
+        private void DrawChartForAllSortingAlgorithms(Dictionary<string, List<DataPoint>> dataPointsByAlgorithm)
+        {
+            chart.Series.Clear();
+            chart.ChartAreas.Clear();
+            chart.Titles.Clear();
+
+            var area = chart.ChartAreas.Add("Area");
+            area.AxisX.Title = "Array Size (N)";
+            area.AxisY.Title = "Number of Operations";
+
+            foreach (var algorithm in dataPointsByAlgorithm.Keys)
+            {
+                Series series = new Series(algorithm)
+                {
+                    ChartType = SeriesChartType.Line
+                };
+
+                foreach (var point in dataPointsByAlgorithm[algorithm])
+                {
+                    series.Points.AddXY(point.N, point.Operations);
+                }
+
+                chart.Series.Add(series);
+            }
+
+            chart.Titles.Add("Зависимость количества операций от числа элементов");
         }
     }
 }

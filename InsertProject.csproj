@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="ArrayDecorator.cs" />
     <Compile Include="BubbleSort.cs" />
+    <Compile Include="BubbleSortsTest.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
