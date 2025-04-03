@@ -25,15 +25,66 @@ namespace InsertProject
 
         private void btnRun_Sorting(object sender, EventArgs e)
         {
-            TestSortingAlgorithms();
+            TestSortingAlgorithms(500);
         }
 
         private void btnRunShaker_Sorting(object sender, EventArgs e)
         {
-            TestShakerSort();
+            CollectSortingData(100);
         }
 
-        private void TestSortingAlgorithms()
+        public void CollectSortingData(int maxSize)
+        {
+            Random random = new Random();
+            Dictionary<string, List<DataPoint>> results = new Dictionary<string, List<DataPoint>>
+    {
+        { "BubbleSort", new List<DataPoint>() },
+        { "SelectionSort", new List<DataPoint>() },
+        { "QuickSort", new List<DataPoint>() }
+    };
+
+            for (int size = 10; size <= maxSize; size += 10)
+            {
+                ArrayDecorator<int> array = new ArrayDecorator<int>(size);
+
+                array.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    array.Insert(i, random.Next(1, 1000));
+                }
+
+                array.EnableCounting();
+                BubbleSortsTest.BubbleSort(array);
+                results["BubbleSort"].Add(new DataPoint(size, array.WriteCount + array.ReadCount));
+                array.ResetCountOperations();
+
+                array.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    array.Insert(i, random.Next(1, 1000));
+                }
+
+                array.EnableCounting();
+                BubbleSortsTest.SelectionSort(array);
+                results["SelectionSort"].Add(new DataPoint(size, array.WriteCount + array.ReadCount));
+                array.ResetCountOperations();
+
+                array.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    array.Insert(i, random.Next(1, 1000));
+                }
+
+                array.EnableCounting();
+                BubbleSortsTest.QuickSort(array, 0, size - 1);
+                results["QuickSort"].Add(new DataPoint(size, array.WriteCount + array.ReadCount));
+                array.ResetCountOperations();
+            }
+
+            DrawChartForAllSortingAlgorithms(results);
+        }
+
+        private void TestSortingAlgorithms(int maxSize)
         {
             Random random = new Random();
             Dictionary<double, List<DataPoint>> resultsByScale = new Dictionary<double, List<DataPoint>>();
@@ -44,7 +95,7 @@ namespace InsertProject
             {
                 List<DataPoint> results = new List<DataPoint>();
 
-                for (int size = 5; size <= 100; size += 5)
+                for (int size = 10; size <= maxSize; size += 10)
                 {
                     ArrayDecorator<int> arrayDecorator = new ArrayDecorator<int>(size);
                     arrayDecorator.DisableCounting();
@@ -368,5 +419,6 @@ namespace InsertProject
 
             chart.Titles.Add("Зависимость количества операций от числа элементов");
         }
+
     }
 }

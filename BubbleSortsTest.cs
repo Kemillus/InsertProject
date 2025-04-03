@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace InsertProject
 {
@@ -78,9 +79,109 @@ namespace InsertProject
             return array.ReadCount + array.WriteCount;
         }
 
+        public static void SelectionSort<T>(ArrayDecorator<T> array) where T : IComparable<T>
+        {
+            for (int i = 0; i < array.Size - 1; i++)
+            {
+                int minIndex = i;
+
+                for (int j = i + 1; j < array.Size; j++)
+                {
+                    if (array.Get(j).CompareTo(array.Get(minIndex)) < 0)
+                    {
+                        minIndex = j;
+                    }
+                }
+
+                if (minIndex != i)
+                {
+                    array.Swap(i, minIndex);
+                }
+            }
+        }
+
+        public static void QuickSort<T>(ArrayDecorator<T> array, int left, int right) where T : IComparable<T>
+        {
+            if (left >= right) return;
+
+            int pivotIndex = Partition(array, left, right);
+
+            QuickSort(array, left, pivotIndex - 1);
+            QuickSort(array, pivotIndex + 1, right);
+        }
+
+        private static int Partition<T>(ArrayDecorator<T> array, int left, int right) where T : IComparable<T>
+        {
+            T pivot = array.Get(right);
+            int i = left - 1;
+
+            for (int j = left; j < right; j++)
+            {
+                if (array.Get(j).CompareTo(pivot) <= 0)
+                {
+                    i++;
+                    array.Swap(i, j);
+                }
+            }
+
+            array.Swap(i + 1, right);
+            return i + 1;
+        }
+
         private static bool IsGreaterThan<T>(T x, T y) where T : IComparable<T>
         {
             return x.CompareTo(y) > 0;
+        }
+
+        public static Dictionary<string, List<DataPoint>> CollectSortingData(int maxSize)
+        {
+            Random random = new Random();
+            Dictionary<string, List<DataPoint>> results = new Dictionary<string, List<DataPoint>>
+    {
+        { "BubbleSort", new List<DataPoint>() },
+        { "SelectionSort", new List<DataPoint>() },
+        { "QuickSort", new List<DataPoint>() }
+    };
+
+            for (int size = 10; size <= maxSize; size += 10)
+            {
+                ArrayDecorator<int> array = new ArrayDecorator<int>(size);
+
+                array.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    array.Insert(i, random.Next(1, 1000));
+                }
+
+                array.EnableCounting();
+                BubbleSortsTest.BubbleSort(array);
+                results["BubbleSort"].Add(new DataPoint(size, array.WriteCount + array.ReadCount));
+                array.ResetCountOperations();
+
+                array.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    array.Insert(i, random.Next(1, 1000));
+                }
+
+                array.EnableCounting();
+                BubbleSortsTest.SelectionSort(array);
+                results["SelectionSort"].Add(new DataPoint(size, array.WriteCount + array.ReadCount));
+                array.ResetCountOperations();
+
+                array.DisableCounting();
+                for (int i = 0; i < size; i++)
+                {
+                    array.Insert(i, random.Next(1, 1000));
+                }
+
+                array.EnableCounting();
+                BubbleSortsTest.QuickSort(array, 0, size - 1);
+                results["QuickSort"].Add(new DataPoint(size, array.WriteCount + array.ReadCount));
+                array.ResetCountOperations();
+            }
+
+            return results;
         }
     }
 }
