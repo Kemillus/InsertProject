@@ -2,9 +2,9 @@
 {
     public class DataPoint
     {
-        public int N { get; set; }
-        public int Operations { get; set; }
-        public DataPoint(int n, int operations)
+        public double N { get; set; }
+        public double Operations { get; set; }
+        public DataPoint(int n, long operations)
         {
             N = n;
             Operations = operations;
